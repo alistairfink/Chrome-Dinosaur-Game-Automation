@@ -14,7 +14,7 @@ func main() {
 		mouseX, mouseY = robotgo.GetMousePos()
 	}
 
-	pixelWallX, pixelWallYOffset := 80, 100-10
+	pixelWallX, pixelWallYOffset := 78, 100-10
 	noObstacleScreenshot := robotgo.CaptureScreen(mouseX, mouseY-100, 100, 150)
 	noObstacleColour := robotgo.GetColor(noObstacleScreenshot, pixelWallX, pixelWallYOffset)
 	robotgo.FreeBitmap(noObstacleScreenshot)
@@ -25,9 +25,9 @@ func main() {
 	i := 1
 	for {
 		screenShot := robotgo.CaptureScreen(mouseX, mouseY-100, 100, 150)
-		y := 36
-		verticalThresh := 8
-		for ; y >= verticalThresh; y -= 2 {
+		y := 37
+		vThresh := 8
+		for ; y >= vThresh; y -= 2 {
 			curr := robotgo.GetColor(screenShot, pixelWallX, pixelWallYOffset+y)
 			if curr != noObstacleColour {
 				jump(&i)
@@ -35,7 +35,7 @@ func main() {
 			}
 		}
 
-		if y <= verticalThresh {
+		if y <= vThresh {
 			for ; y >= 0; y -= 2 {
 				curr := robotgo.GetColor(screenShot, pixelWallX+20, pixelWallYOffset+y)
 				if curr != noObstacleColour {
@@ -53,5 +53,5 @@ func jump(i *int) {
 	robotgo.KeyTap("space")
 	println("jump", *i)
 	*i++
-	time.Sleep(400 * time.Millisecond)
+	time.Sleep(350 * time.Millisecond)
 }
