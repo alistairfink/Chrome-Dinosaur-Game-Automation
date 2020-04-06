@@ -3,7 +3,6 @@ package main
 import (
 	"github.com/go-vgo/robotgo"
 	"time"
-	// "github.com/vova616/screenshot"
 )
 
 func main() {
